@@ -170,11 +170,15 @@ if st.button("Predict"):
     choices[target_column] = prediction.loc[0, target_column]
     prediction_results_sorted.loc[next_index, :] = choices
 
-prediction_results_sorted = prediction_results_sorted.astype({
-        "YearBuilt": "string",
-        "YearRemodAdd": "string"
-})
 
+for var in correlated_flipped.columns:
+    if var == target_column:
+        prediction_results_sorted[var] = prediction_results_sorted[var].apply(lambda _: f"${_:,.0f}")
+    try:
+        prediction_results_sorted[var] = prediction_results_sorted[var].apply(int)
+    except ValueError:
+        prediction_results_sorted[var] = prediction_results_sorted[var].apply(str)
+    
 st.write(
     prediction_results_sorted\
         .style\
