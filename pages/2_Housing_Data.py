@@ -1,5 +1,5 @@
 import streamlit as st
-from utils.st_data_utils import get_na_data, get_training_data, get_training_variables
+from utils.st_data_utils import get_na_data, get_training_data, get_training_variable_info
 from utils.st_insight_utils import plot_data_distribution
 from utils.st_parameters import separator, plot_columns
 
@@ -7,7 +7,7 @@ from utils.st_parameters import separator, plot_columns
 st.set_page_config(page_title="Housing Data", page_icon="📈")
 
 # load data
-variables = get_training_variables()
+variables = get_training_variable_info()
 na_data = get_na_data()
 training_data = get_training_data()
 
@@ -37,7 +37,7 @@ container.markdown("#### Data Distribution")
 container.pyplot(
     plot_data_distribution(
         plot_columns=plot_columns,
-        variables=variables,
+        variable_info=variables,
         data=display_dataframe
     )
 )

@@ -40,7 +40,7 @@ def get_training_data():
 
 
 @st.cache_data
-def get_training_variables():
+def get_training_variable_info():
     return pd.read_csv(
         os.path.join(
             os.getenv("STREAMLIT_DATA_PATH"),

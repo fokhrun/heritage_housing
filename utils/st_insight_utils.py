@@ -32,14 +32,17 @@ def get_correlation(data, categorical_variables, dependent_variable, independent
     return corr_value, corr_description
 
 
-def plot_correlated_features(plot_rows, plot_columns, features, data, variables, categorical_variables, target_column):
+def plot_correlated_features(plot_columns, variables, data, variable_info, target_column):
 
+    categorical_variables = variable_info[variable_info["featureType"] == "categorical"]["featureName"].tolist()
+
+    plot_rows = int(len(variables) / 2)
     plot_height = 2.5 * plot_rows
-    plot_width = 6 * plot_columns
+    plot_width = 12
 
     fig, axs = plt.subplots(plot_rows, plot_columns, figsize=(plot_width, plot_height))
 
-    for idx, var in enumerate(features):
+    for idx, var in enumerate(variables):
         ax = axs[int(idx / 2)][idx % 2]
         corr_value, corr_description = get_correlation(
             data=data,
@@ -47,7 +50,7 @@ def plot_correlated_features(plot_rows, plot_columns, features, data, variables,
             dependent_variable=target_column,
             independent_variable=var
         )
-        var_description = variables[variables["featureName"] == var]["featureDescription"].values[0]
+        var_description = variable_info[variable_info["featureName"] == var]["featureDescription"].values[0]
         X_train = data[var]
         y_train = data[target_column]
 
@@ -66,9 +69,9 @@ def plot_correlated_features(plot_rows, plot_columns, features, data, variables,
     return fig
 
 
-def plot_data_distribution(plot_columns, variables, data):
+def plot_data_distribution(plot_columns, variable_info, data):
 
-    categorical_variables = variables[variables["featureType"] == "categorical"]["featureName"]
+    categorical_variables = variable_info[variable_info["featureType"] == "categorical"]["featureName"]
 
     plot_rows = int(len(data.columns) / plot_columns)
     plot_width = 12
@@ -85,7 +88,7 @@ def plot_data_distribution(plot_columns, variables, data):
             sns.histplot(data=data, x=var, ax=ax)
 
         ax.set_title(
-            f"{variables[variables["featureName"] == var]['featureDescription'].values[0]}"
+            f"{variable_info[variable_info["featureName"] == var]['featureDescription'].values[0]}"
         )
         ax.set_xlabel(var)
 

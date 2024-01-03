@@ -1,37 +1,24 @@
 import streamlit as st
-from utils.st_data_utils import get_correlated_variables, get_training_data, get_training_variables
+from utils.st_data_utils import get_correlated_variables, get_training_data, get_training_variable_info
 from utils.st_insight_utils import plot_correlated_features
-
+from utils.st_parameters import plot_columns, target_column
 
 st.set_page_config(page_title="SalePrice Correlation", page_icon="📈")
 
-
-target_column = "SalePrice"
-variables = get_training_variables()
-categorical_variables = variables[variables["featureType"] == "categorical"]["featureName"].tolist()  
-numerical_variables = variables[variables["featureType"] == "numerical"]["featureName"].tolist()
-temporal_variables = variables[variables["featureType"] == "temporal"]["featureName"].tolist()
-
-
+# load data
+variable_info = get_training_variable_info()
 training_data = get_training_data()
 correlated = get_correlated_variables()
 
 high_correlated_features = correlated["featureName"].tolist()
 low_correlated_features = training_data.columns.difference(set(high_correlated_features))
 
-# plotting variables
-plot_columns = 2
-high_correlated_plot_rows = int(len(high_correlated_features) / 2)
-low_correlated_plot_rows = int(len(low_correlated_features) / 2)
-
 
 high_correlated_fig = plot_correlated_features(
-    plot_rows=high_correlated_plot_rows,
     plot_columns=plot_columns,
-    features=high_correlated_features,
+    variables=high_correlated_features,
     data=training_data,
-    variables=variables,
-    categorical_variables=categorical_variables,
+    variable_info=variable_info,
     target_column=target_column
 )
 
@@ -69,12 +56,10 @@ if show_high_correlated:
 
 if show_low_correlated:
     low_correlated_fig = plot_correlated_features(
-        plot_rows=low_correlated_plot_rows,
         plot_columns=plot_columns,
-        features=low_correlated_features,
+        variables=low_correlated_features,
         data=training_data,
-        variables=variables,
-        categorical_variables=categorical_variables,
+        variable_info=variable_info,
         target_column=target_column
     )
 
