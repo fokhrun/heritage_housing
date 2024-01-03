@@ -11,79 +11,82 @@ import streamlit as st
 dotenv.load_dotenv()
 
 
+def get_path(filename):
+    return os.path.join(os.getenv("STREAMLIT_DATA_PATH"), filename)
+
+
 @st.cache_data
 def get_correlated_variables():
-    return pd.read_csv(
-        os.path.join(
-            os.getenv("STREAMLIT_DATA_PATH"),
-            os.getenv("CORRELATED_VARIABLE_FILES")
-        )
-    )
+    return pd.read_csv(get_path(os.getenv("CORRELATED_VARIABLE_FILES")))
 
 
 @st.cache_data
 def get_na_data():
-    return pd.read_csv(
-        os.path.join(
-            os.getenv("STREAMLIT_DATA_PATH"),
-            os.getenv("NA_STATS_HOUSING_RECORDS_FILENAME")
-        )
-    )
+    return pd.read_csv(get_path(os.getenv("NA_STATS_HOUSING_RECORDS_FILENAME")))
 
 
 @st.cache_data
 def get_training_data():
-    return pd.read_csv(
-        os.path.join(
-            os.getenv("STREAMLIT_DATA_PATH"),
-            os.getenv("HOUSING_RECORDS_FILENAME")
-        )
-    )
+    return pd.read_csv(get_path(os.getenv("HOUSING_RECORDS_FILENAME")))
 
 
 @st.cache_data
 def get_training_variable_info():
-    return pd.read_csv(
-        os.path.join(
-            os.getenv("STREAMLIT_DATA_PATH"),
-            os.getenv("VARIABLE_FILES")
-        )
-    )
+    return pd.read_csv(get_path(os.getenv("VARIABLE_FILES")))
 
 
 @st.cache_data
 def get_prediction_data():
-    return pd.read_csv(
-        os.path.join(
-            os.getenv("STREAMLIT_DATA_PATH"),
-            os.getenv("PREDICTION_SUBSET_FILENAME")
-        )
-    )
+    return pd.read_csv(get_path(os.getenv("PREDICTION_SUBSET_FILENAME")))
 
 
 @st.cache_data
 def get_prediction_features():
+    return pd.read_csv(get_path(os.getenv("PREDICTION_FEATURES_FILENAME")))
 
-    return pd.read_csv(
-        os.path.join(
-            os.getenv("STREAMLIT_DATA_PATH"),
-            os.getenv("PREDICTION_FEATURES_FILENAME")
-        )
-    )
+
+@st.cache_data
+def get_optimisation_performance():
+    return pd.read_csv(get_path(os.getenv("OPTIMISATION_PERFORMANCE_FILENAME")))
+
+
+@st.cache_data
+def get_optimisation_feature_importance():
+    return pd.read_csv(get_path(os.getenv("OPTIMISATION_FEATURES_IMPORTANCE_FILENAME")))
+
+
+@st.cache_data
+def get_optimisation_parameters():
+    return pd.read_csv(get_path(os.getenv("OPT_PARAMETERS_FILENAME")))
+
+
+@st.cache_data
+def get_model_performance():
+    return pd.read_csv(get_path(os.getenv("MODEL_PERFORMANCE_FILENAME")))
+
+
+@st.cache_data
+def get_model_feature_importance():
+    return pd.read_csv(get_path(os.getenv("MODEL_FEATURES_IMPORTANCE_FILENAME")))
+
+
+@st.cache_data
+def get_model_parameters():
+    return pd.read_csv(get_path(os.getenv("MODEL_PARAMETERS_FILENAME")))
+
+
+@st.cache_resource
+def get_learning_curve_path():
+    return get_path(os.getenv("LEARNING_CURVE_FILENAME"))
 
 
 @st.cache_resource
 def get_estimator():
-    return joblib.load(
-        os.path.join(
-            os.getenv("STREAMLIT_DATA_PATH"),
-            os.getenv("HOUSING_ESTIMATOR_NAME")
-        )
-    )
+    return joblib.load(get_path(os.getenv("HOUSING_ESTIMATOR_NAME")))
 
 
 @st.cache_data
-def get_prediction_features_info(prediction_choices, feature_info):
+def get_prediction_feature_info(prediction_choices, feature_info):
 
     sample = get_prediction_features()
     prediction_features = pd.DataFrame(np.zeros((1, sample.shape[1])), columns=sample.columns)
