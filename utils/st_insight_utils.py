@@ -1,3 +1,4 @@
+
 import pandas as pd
 import seaborn as sns
 from matplotlib import pyplot as plt
@@ -10,7 +11,7 @@ def get_correlation(data, categorical_variables, dependent_variable, independent
         corr_description = "categorical:not applicable"
     else:
         corr = pd.concat(
-            [data[dependent_variable], data[independent_variable]], 
+            [data[dependent_variable], data[independent_variable]],
             axis=1
         ).corr()
         corr_value = corr[independent_variable].iloc[0]

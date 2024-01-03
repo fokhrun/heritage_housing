@@ -17,8 +17,8 @@ The dashboard application that allows her to maximize sale price of her inherite
 
 #### Project Dataset
 
-The dataset used in this project is a curated dataset of publicly available Ames Housing dataset. 
-The dataset contains 24 explanatory variables describing key aspect of residential homes in Ames, Iowa. 
+The dataset used in this project is a curated dataset of publicly available Ames Housing dataset.  
+The dataset contains 24 explanatory variables describing key attributes of residential homes and their sale prices in Ames, Iowa.
 It contains unique records of 1430 houses and 81 variables.
 The dataset can be downloaded from [here](https://www.kaggle.com/datasets/codeinstitute/housing-prices-data).
 """)
