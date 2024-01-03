@@ -1,9 +1,9 @@
 import streamlit as st
 from utils.st_data_utils import get_correlated_variables, get_training_data, get_training_variable_info
 from utils.st_insight_utils import plot_correlated_features
-from utils.st_parameters import plot_columns, target_column
+from utils.st_parameters import page_icon, plot_columns, target_column
 
-st.set_page_config(page_title="SalePrice Correlation", page_icon="📈")
+st.set_page_config(page_title="SalePrice Correlation", page_icon=page_icon)
 
 # load data
 variable_info = get_training_variable_info()

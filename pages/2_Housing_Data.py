@@ -1,10 +1,10 @@
 import streamlit as st
 from utils.st_data_utils import get_na_data, get_training_data, get_training_variable_info
 from utils.st_insight_utils import plot_data_distribution
-from utils.st_parameters import separator, plot_columns
+from utils.st_parameters import separator, page_icon, plot_columns
 
 
-st.set_page_config(page_title="Housing Data", page_icon="📈")
+st.set_page_config(page_title="Housing Data", page_icon=page_icon)
 
 # load data
 variables = get_training_variable_info()

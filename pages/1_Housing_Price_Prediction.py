@@ -2,12 +2,12 @@
 import pandas as pd
 import streamlit as st
 from utils.st_data_utils import get_correlated_info, get_prediction_data, get_prediction_features_info
-from utils.st_parameters import target_column
+from utils.st_parameters import target_column, page_icon
 
 title = "Housing Price Prediction"
 
 
-st.set_page_config(page_title=title, page_icon="📊")
+st.set_page_config(page_title=title, page_icon=page_icon)
 st.markdown(f"# {title}")
 st.sidebar.header(title)
 
@@ -64,7 +64,6 @@ if st.button("Predict"):
     choices[target_column] = prediction.loc[0, target_column]
     prediction_results_sorted.loc[next_index, :] = choices
 
-
 for var in correlated.columns:
     if var == target_column:
         prediction_results_sorted[var] = prediction_results_sorted[var].apply(lambda _: f"${_:,.0f}")
@@ -79,3 +78,7 @@ st.write(
         subset=[target_column]
     )
 )
+
+with st.sidebar:
+    if st.button("Reset"):
+        st.empty()
