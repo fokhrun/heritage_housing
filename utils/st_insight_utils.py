@@ -64,3 +64,31 @@ def plot_correlated_features(plot_rows, plot_columns, features, data, variables,
 
     plt.tight_layout()
     return fig
+
+
+def plot_data_distribution(plot_columns, variables, data):
+
+    categorical_variables = variables[variables["featureType"] == "categorical"]["featureName"]
+
+    plot_rows = int(len(data.columns) / plot_columns)
+    plot_width = 12
+    plot_height = 2.5 * plot_rows
+    fig, axs = plt.subplots(plot_rows, plot_columns, figsize=(plot_width, plot_height))
+
+    for idx, var in enumerate(data.columns):
+
+        ax = axs[int(idx / plot_columns)][idx % plot_columns]
+
+        if var in categorical_variables:
+            sns.countplot(data=data, x=var, ax=ax)
+        else:
+            sns.histplot(data=data, x=var, ax=ax)
+
+        ax.set_title(
+            f"{variables[variables["featureName"] == var]['featureDescription'].values[0]}"
+        )
+        ax.set_xlabel(var)
+
+    plt.tight_layout()
+
+    return fig
