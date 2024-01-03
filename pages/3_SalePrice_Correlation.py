@@ -3,7 +3,11 @@ from utils.st_data_utils import get_correlated_variables, get_training_data, get
 from utils.st_insight_utils import plot_correlated_features
 from utils.st_parameters import page_icon, plot_columns, target_column
 
-st.set_page_config(page_title="SalePrice Correlation", page_icon=page_icon)
+
+page_title = "Sale Price Correlation"
+
+st.set_page_config(page_title=page_title, page_icon=page_icon)
+st.markdown(f"# {page_title}")
 
 # load data
 variable_info = get_training_variable_info()
@@ -23,12 +27,9 @@ high_correlated_fig = plot_correlated_features(
 )
 
 
-with st.sidebar:
-    show_high_correlated = st.checkbox("Highly Correlated Features", value=True)
-    show_low_correlated = st.checkbox("Low Correlated Features")
+show_high_correlated = st.checkbox("Highly Correlated Features", value=True)
+show_low_correlated = st.checkbox("Low Correlated Features")
 
-
-st.markdown("# Correlation to Sale Price")
 
 if show_high_correlated:
     st.markdown("### Highly correlated Features")

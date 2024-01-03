@@ -1,15 +1,13 @@
 
 import pandas as pd
 import streamlit as st
-from utils.st_data_utils import get_correlated_info, get_prediction_data, get_prediction_features_info
+from utils.st_data_utils import get_correlated_info, get_prediction_data, get_prediction_feature_info
 from utils.st_parameters import target_column, page_icon
 
-title = "Housing Price Prediction"
+page_title = "Housing Price Prediction"
 
-
-st.set_page_config(page_title=title, page_icon=page_icon)
-st.markdown(f"# {title}")
-st.sidebar.header(title)
+st.set_page_config(page_title=page_title, page_icon=page_icon)
+st.markdown(f"# {page_title}")
 
 feature_configuration, correlated = get_correlated_info()
 prediction_results = get_prediction_data()
@@ -60,7 +58,7 @@ next_index = index_formatter(prediction_results_sorted.index[-1] + 1)
 prediction_results_sorted.index = [index_formatter(idx) for idx in prediction_results_sorted.index]
 
 if st.button("Predict"):
-    prediction = get_prediction_features_info(prediction_choices=choices, feature_info=correlated)
+    prediction = get_prediction_feature_info(prediction_choices=choices, feature_info=correlated)
     choices[target_column] = prediction.loc[0, target_column]
     prediction_results_sorted.loc[next_index, :] = choices
 
@@ -79,6 +77,5 @@ st.write(
     )
 )
 
-with st.sidebar:
-    if st.button("Reset"):
-        st.empty()
+if st.button("Reset"):
+    st.empty()

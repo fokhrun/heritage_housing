@@ -4,15 +4,18 @@ from utils.st_insight_utils import plot_data_distribution
 from utils.st_parameters import separator, page_icon, plot_columns
 
 
-st.set_page_config(page_title="Housing Data", page_icon=page_icon)
+page_title = "Housing Data Analysis"
+
+st.set_page_config(page_title=page_title, page_icon=page_icon)
+st.markdown(f"# {page_title}")
 
 # load data
 variables = get_training_variable_info()
 na_data = get_na_data()
 training_data = get_training_data()
 
-
-st.markdown("# Training Data Analysis")
+show_data_distribution = st.checkbox("Show Data Distribution")
+show_data_description = st.checkbox("Show Data Description")
 
 # work with subset of the training data
 container = st.container()
@@ -33,17 +36,15 @@ display_dataframe = training_data[display_columns]
 container.markdown("#### Data Snapshot")
 container.dataframe(data=display_dataframe.head(5))
 
-container.markdown("#### Data Distribution")
-container.pyplot(
-    plot_data_distribution(
-        plot_columns=plot_columns,
-        variable_info=variables,
-        data=display_dataframe
+if show_data_distribution:
+    st.markdown("#### Data Distribution")
+    st.pyplot(
+        plot_data_distribution(
+            plot_columns=plot_columns,
+            variable_info=variables,
+            data=display_dataframe
+        )
     )
-)
-
-with st.sidebar:
-    show_data_description = st.checkbox("Show Data Description")
 
 if show_data_description:
 

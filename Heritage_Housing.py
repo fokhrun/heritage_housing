@@ -1,10 +1,13 @@
 import streamlit as st
+from utils.st_parameters import page_icon
 
-st.set_page_config(page_title="Heritage Housing", page_icon="📈")
 
-st.write("## Heritage Housing Dashboard!")
+page_title = "Heritage Housing"
 
-st.sidebar.success("Project Summary.")
+st.set_page_config(page_title=page_title, page_icon=page_icon)
+
+st.markdown(f"## {page_title}")
+
 
 st.markdown("""
 #### Business Requirements
