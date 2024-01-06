@@ -26,13 +26,29 @@ def get_na_data():
 
 
 @st.cache_data
-def get_training_data():
-    return pd.read_csv(get_path(os.getenv("HOUSING_RECORDS_FILENAME")))
+def get_training_variable_info():
+    return pd.read_csv(get_path(os.getenv("VARIABLE_FILES")))
 
 
 @st.cache_data
-def get_training_variable_info():
-    return pd.read_csv(get_path(os.getenv("VARIABLE_FILES")))
+def get_training_data():
+    return pd.read_csv(get_path(os.getenv("HOUSING_RECORDS_FILENAME")))
+
+@st.cache_data
+def view_training_data(data):
+    variables = get_training_variable_info()
+    categorical_features = variables[variables["featureType"] == "categorical"]["featureName"].values
+
+    formatter = {}
+
+    for var in data.columns:
+        if var not in categorical_features:
+            formatter[var] = "{:.0f}"
+        else:
+            if data[var].dtype == "float64":
+                formatter[var] = "{:.0f}"
+
+    return data.style.format(formatter)
 
 
 @st.cache_data
