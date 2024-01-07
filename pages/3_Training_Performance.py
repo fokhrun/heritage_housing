@@ -33,7 +33,7 @@ with optimisation_tab:
 
     with st.expander("Optimisation Performance"):
         st.dataframe(
-            get_optimisation_performance().style.format({        
+            get_optimisation_performance().style.format({
                 "mse": "{:.2f}",
                 "r2": "{:.2f}",
             }),
