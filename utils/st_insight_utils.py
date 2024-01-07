@@ -33,17 +33,17 @@ def get_correlation(data, categorical_variables, dependent_variable, independent
     return corr_value, corr_description
 
 
-def plot_correlated_features(plot_columns, variables, data, variable_info, target_column):
+def plot_correlated_features(plot_columns, chosen_variables, data, variable_info, target_column):
 
     categorical_variables = variable_info[variable_info["featureType"] == "categorical"]["featureName"].tolist()
 
-    plot_rows = int(len(variables) / 2)
+    plot_rows = int(len(chosen_variables) / 2)
     plot_height = 2.5 * plot_rows
     plot_width = 12
 
     fig, axs = plt.subplots(plot_rows, plot_columns, figsize=(plot_width, plot_height))
 
-    for idx, var in enumerate(variables):
+    for idx, var in enumerate(chosen_variables):
         ax = axs[int(idx / 2)][idx % 2]
         corr_value, corr_description = get_correlation(
             data=data,

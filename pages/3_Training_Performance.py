@@ -46,14 +46,15 @@ with optimisation_tab:
         best_value = np.max(optimisation_parameters["rmse"])
         best_value_parameters = optimisation_parameters[optimisation_parameters["rmse"] == best_value]
 
-        st.dataframe(optimisation_parameters.style.format({      
+        st.dataframe(optimisation_parameters.style.format({
                 "learning_rate": "{:.2f}",
                 "max_depth": "{:.0f}",
                 "n_estimators": "{:.0f}",
                 "rmse": "{:.2f}",
                 "min_child_weight": "{:.0f}",
             }).set_properties(
-                **{'background-color': 'grey'}, subset=pd.IndexSlice[best_value_parameters.index, best_value_parameters.columns]
+                **{'background-color': 'grey'},
+                subset=pd.IndexSlice[best_value_parameters.index, best_value_parameters.columns]
             ),
             hide_index=True
         )

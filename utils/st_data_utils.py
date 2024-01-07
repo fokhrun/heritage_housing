@@ -34,7 +34,7 @@ def get_training_variable_info():
 def get_training_data():
     return pd.read_csv(get_path(os.getenv("HOUSING_RECORDS_FILENAME")))
 
-@st.cache_data
+
 def view_training_data(data):
     variables = get_training_variable_info()
     categorical_features = variables[variables["featureType"] == "categorical"]["featureName"].values
