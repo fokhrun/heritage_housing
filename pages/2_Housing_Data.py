@@ -63,7 +63,7 @@ with training_data_tab:
 
 with correlation_tab:
     # load data
-    high_correlated_features = correlated["featureName"].tolist()
+    high_correlated_features = correlated["featureName"].tolist() + [target_column]
     low_correlated_features = training_data.columns.difference(set(high_correlated_features))
 
     high_correlated_fig = plot_correlated_features(

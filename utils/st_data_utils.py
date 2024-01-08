@@ -97,6 +97,11 @@ def get_learning_curve_path():
 
 
 @st.cache_resource
+def get_prediction_correlation():
+    return get_path(os.getenv("PREDICTION_CORRELATION_FILENAME"))
+
+
+@st.cache_resource
 def get_estimator():
     return joblib.load(get_path(os.getenv("HOUSING_ESTIMATOR_NAME")))
 
