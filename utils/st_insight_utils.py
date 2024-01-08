@@ -89,7 +89,7 @@ def plot_data_distribution(plot_columns, variable_info, data):
             sns.histplot(data=data, x=var, ax=ax)
 
         ax.set_title(
-            f"{variable_info[variable_info["featureName"] == var]['featureDescription'].values[0]}"
+            f"{variable_info[variable_info['featureName'] == var]['featureDescription'].values[0]}"
         )
         ax.set_xlabel(var)
 
