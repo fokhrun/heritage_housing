@@ -1,4 +1,5 @@
 mkdir -p ~/.streamlit/
+mv .env_template .env
 echo "\
 [server]\n\
 headless = true\n\
