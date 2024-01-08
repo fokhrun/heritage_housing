@@ -1,0 +1,10 @@
+featureName,featureType,featureDescription,featureValues
+1stFlrSF,numerical, First Floor square feet,334 - 4692
+TotalBsmtSF,numerical, Total square feet of basement area,0 - 6110
+GarageArea,numerical, Size of garage in square feet,0 - 1418
+GrLivArea,numerical, Above grade (ground) living area square feet,334 - 5642
+KitchenQual,categorical, Kitchen quality,"Ex: Excellent, Gd: Good, TA: Typical/Average, Fa: Fair, Po: Poor"
+OverallCond,categorical, Rates the overall condition of the house,"10: Very Excellent, 9: Excellent, 8: Very Good, 7: Good, 6: Above Average, 5: Average, 4: Below Average, 3: Fair, 2: Poor, 1: Very Poor"
+OverallQual,categorical, Rates the overall material and finish of the house,"10: Very Excellent, 9: Excellent, 8: Very Good, 7: Good, 6: Above Average, 5: Average, 4: Below Average, 3: Fair, 2: Poor, 1: Very Poor"
+YearBuilt,temporal, Original construction date,1872 - 2010
+YearRemodAdd,temporal, Remodel date (same as construction date if no remodeling or additions),1950 - 2010
