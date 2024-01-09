@@ -55,7 +55,7 @@ with training_data_tab:
 
     with st.expander("Data Description"):
         data_description = display_dataframe.dropna().describe()
-        st.dataframe(data=data_description)
+        st.dataframe(data_description.style.format("{:.2f}"))
 
     with st.expander("Missing Values"):
         na_data_display = na_data[na_data["column"].isin(display_columns)].reset_index()

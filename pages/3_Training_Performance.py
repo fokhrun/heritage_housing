@@ -56,7 +56,10 @@ with training_tab:
     with st.expander("Model Performance"):
         col1, col2 = st.columns(2)
         with col1:
-            st.dataframe(get_model_performance(), hide_index=True)
+            st.dataframe(get_model_performance().style.format({
+                "mse": "{:.2f}",
+                "r2": "{:.2f}",
+            }), hide_index=True)
         with col2:
             st.dataframe(get_model_parameters(), hide_index=True)
 
@@ -66,7 +69,7 @@ with training_tab:
     with st.expander("Hypothesis validation"):
         st.image(get_prediction_correlation())
         st.markdown("""
-            The above correlation plot validates the following: 
+            The above correlation plot validates the following:
             - the predicted sale price is very strongly correlated to the actual sale price
             - the predicted sale price typical increases with the increase in the house size, condition, and age
         """)

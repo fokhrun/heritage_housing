@@ -1,0 +1,25 @@
+featureName,featureType,featureDescription,featureValues
+1stFlrSF,numerical, First Floor square feet,334 - 4692
+2ndFlrSF,numerical, Second floor square feet,0 - 2065
+BedroomAbvGr,categorical, Bedrooms above grade (does NOT include basement bedrooms),0 - 8
+BsmtExposure,categorical, Refers to walkout or garden level walls,"Gd: Good Exposure, Av: Average Exposure, Mn: Mimimum Exposure, No: No Exposure, None: No Basement"
+BsmtFinType1,categorical, Rating of basement finished area,"GLQ: Good Living Quarters, ALQ: Average Living Quarters, BLQ: Below Average Living Quarters, Rec: Average Rec Room, LwQ: Low Quality, Unf: Unfinshed, None: No Basement"
+BsmtFinSF1,numerical, Type 1 finished square feet,0 - 5644
+BsmtUnfSF,numerical, Unfinished square feet of basement area,0 - 2336
+TotalBsmtSF,numerical, Total square feet of basement area,0 - 6110
+GarageArea,numerical, Size of garage in square feet,0 - 1418
+GarageFinish,categorical, Interior finish of the garage,"Fin: Finished, RFn: Rough Finished, Unf: Unfinished, None: No Garage"
+GarageYrBlt,temporal, Year garage was built,1900 - 2010
+GrLivArea,numerical, Above grade (ground) living area square feet,334 - 5642
+KitchenQual,categorical, Kitchen quality,"Ex: Excellent, Gd: Good, TA: Typical/Average, Fa: Fair, Po: Poor"
+LotArea,numerical, Lot size in square feet,1300 - 215245
+LotFrontage,numerical, Linear feet of street connected to property,21 - 313
+MasVnrArea,numerical, Masonry veneer area in square feet,0 - 1600
+EnclosedPorch,numerical, Enclosed porch area in square feet,0 - 286
+OpenPorchSF,numerical, Open porch area in square feet,0 - 547
+OverallCond,categorical, Rates the overall condition of the house,"10: Very Excellent, 9: Excellent, 8: Very Good, 7: Good, 6: Above Average, 5: Average, 4: Below Average, 3: Fair, 2: Poor, 1: Very Poor"
+OverallQual,categorical, Rates the overall material and finish of the house,"10: Very Excellent, 9: Excellent, 8: Very Good, 7: Good, 6: Above Average, 5: Average, 4: Below Average, 3: Fair, 2: Poor, 1: Very Poor"
+WoodDeckSF,numerical, Wood deck area in square feet,0 - 736
+YearBuilt,temporal, Original construction date,1872 - 2010
+YearRemodAdd,temporal, Remodel date (same as construction date if no remodeling or additions),1950 - 2010
+SalePrice,numerical, Sale Price,34900 - 755000|
