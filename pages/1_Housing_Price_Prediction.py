@@ -57,14 +57,21 @@ def index_formatter(idx):
 next_index = index_formatter(prediction_results_sorted.index[-1] + 1)
 prediction_results_sorted.index = [index_formatter(idx) for idx in prediction_results_sorted.index]
 
+for var in correlated.columns:
+    if var == target_column:
+        st.write("Here are the predicted prices:")
+        prediction_results_sorted[var] = prediction_results_sorted[var].apply(lambda _: f"${_:,.0f}")
+    try:
+        prediction_results_sorted[var] = prediction_results_sorted[var].apply(int)
+    except ValueError:
+        prediction_results_sorted[var] = prediction_results_sorted[var].apply(str)
+
 if st.button("Predict"):
     prediction = get_prediction_feature_info(prediction_choices=choices, feature_info=correlated)
     choices[target_column] = prediction.loc[0, target_column]
     prediction_results_sorted.loc[next_index, :] = choices
 
 for var in correlated.columns:
-    if var == target_column:
-        prediction_results_sorted[var] = prediction_results_sorted[var].apply(lambda _: f"${_:,.0f}")
     try:
         prediction_results_sorted[var] = prediction_results_sorted[var].apply(int)
     except ValueError:
@@ -74,7 +81,7 @@ st.write(
     prediction_results_sorted.style.set_properties(
         **{"background-color": "blue"},
         subset=[target_column]
-    )
+    ).format({target_column: "{:.0f}"})
 )
 
 if st.button("Reset"):

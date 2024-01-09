@@ -56,7 +56,10 @@ with training_tab:
     with st.expander("Model Performance"):
         col1, col2 = st.columns(2)
         with col1:
-            st.dataframe(get_model_performance(), hide_index=True)
+            st.dataframe(get_model_performance().style.format({
+                "mse": "{:.2f}",
+                "r2": "{:.2f}",
+            }), hide_index=True)
         with col2:
             st.dataframe(get_model_parameters(), hide_index=True)
 
