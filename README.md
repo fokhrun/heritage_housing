@@ -80,6 +80,34 @@ These hypothesis should be validated by the following observations:
 
 Note that location desirability and room count also have similar effect, but the dataset did not those variables.
 
+## Mapping Business Case To ML Solution
+
+### How the data is collected and cleansed
+
+Before we handle any of the business case, we need to acquire the data. While the data can be acquired in a plain Python script, we have chosen to implement it as a jupyter notebook titled [Data Collection](https://github.com/fokhrun/heritage_housing/blob/documentation/jupyter_notebooks/data_collection.ipynb).
+
+The notebook performs the following:
+
+1. Download the data from kaggle. It is a zip file that is extracted. It provides three main data: 
+    1. `house-metadata.txt`: contains description of the attributes 
+    2. `house_prices_records.csv`: contains data to be used for ML model training
+    3. `inherited_houses.csv`: contains data to be used for ML model prediction
+
+2. Read the `house_prices_records.csv` and `inherited_houses.csv` files as pandas dataframes, validate the shapes, and get a basic understanding of the dataset. Apart from the number of rows (1460 for the former and 4 for the latter), the difference between these two dataframes is the `SalePrice` attribute, which is only available in `house_prices_records.csv`. This is the target attribute. 
+
+3. Analyze the missing data. `inherited_houses.csv` does not have any. However, the `house_prices_records.csv` has some. Observe the following image for more details. 
+
+![Missing Values](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/missing_data.png)
+
+### How the House attributes correlate with the sale price
+
+To study how the housing attributes correlate with the sale price, the following precondition should be met. 
+- The data is downloaded and cleansed: 
+
+### How the trained model generates good predictions
+
+### How key results are demonstrated in a dashboard
+
 ## Planning & Execution
 
 The project followed a simple agile method, with the 5 main epics:
