@@ -89,27 +89,40 @@ The project followed a simple agile method, with the 5 main epics:
 - Model training
 - Dashboard
 - Documentation
-- Future Improvements
 
 The epics were executed with one or more user stories in the GitHub Project [Heritage Housing](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=). The following image provides a snapshot of the project:
 
-![Tracking user stories in GitHub Project](doc_images\github_project_heritage_housing.png)
+![Tracking user stories in GitHub Project](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/github_project_heritage_housing.png)
 
 The project is designed as a kanban board with three columns: `To Do`, `In Progress`, `Done`.
 
 Each user story is created by adding an item in the `To Do` column. When work starts for a user story, it is moved to `In Progress`. When the work regarding the user story finishes, it is moved to `Done` column. The following figure demonstrates a user story. 
 
-![User story](doc_images\user_story.png)
+![User story](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/user_story.png)
+
+### Execution
 
 Each user story is linked to a GitHub issue as demonstrated by the following figure. It allows connected the user story to relevant GitHub branc/pull request. 
 
-![User story](doc_images\issues_connected_to_user_story.png)
+![Issue connected to user story](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/issues_connected_to_user_stories.png)
 
-### User story
+The execution of the user story typically starts at the codebase, with a branch off the main branch. Once the development is done, the branch is merged to the main branch using a pull request (see below figure).
 
-[Describe how a user story is created]
+![Pull request](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/pull_request.png)
 
 ### User Stories
+
+|  Epic | User Stories |
+|---|---|
+| Bootstrap | [Starter repository](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=&pane=issue&itemId=46559138) |
+|  | [Local development environment](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=epic%3ABootstrap&pane=issue&itemId=46693177) |
+| Data collection | [Prepare for data collection](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=epic%3A%22Data+collection%22&pane=issue&itemId=46690864)
+|  | [Data collection notebook](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=epic%3A%22Data+collection%22&pane=issue&itemId=46560003) |
+| Data Analysis | [Exploratory data analysis](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=epic%3A%22Data+Analysis%22&pane=issue&itemId=46694465)
+| Model Training | [Model training, optimization and validation](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=epic%3A%22Model+Training%22&pane=issue&itemId=46690073) |
+| Dashboard | [Dashboard planning, designing, and development](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=&pane=issue&itemId=46690128) |
+|  | [Dashboard deployment and release](https://github.com/fokhrun/heritage_housing/issues/12) |
+| Documentation | [Documentation](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=&pane=issue&itemId=49358304) |
 
 ## How to use this repo
 
