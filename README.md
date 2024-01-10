@@ -73,11 +73,43 @@ The target variable in this project is SalePrice, which represent the sale price
     - hypothesis: newer the house, higher the price
     - relevant variables: GarageYrBlt,YearBuilt, YearRemodAdd
 
+### Validation Approach
 These hypothesis should be validated by the following observations:
 - Both the actual and predicted (on data unused in training) SalePrice should be very strongly correlated
 - The predicted (on data unused in training) SalePrice should generally increase with the that of the house size, condition, and age. It should show correlation to the columns mentioned above similarly to the actual sale price.
 
 Note that location desirability and room count also have similar effect, but the dataset did not those variables.
+
+## Planning & Execution
+
+The project followed a simple agile method, with the 5 main epics:
+- Bootstrap
+- Data collection
+- Data analysis
+- Model training
+- Dashboard
+- Documentation
+- Future Improvements
+
+The epics were executed with one or more user stories in the GitHub Project [Heritage Housing](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=). The following image provides a snapshot of the project:
+
+![Tracking user stories in GitHub Project](doc_images\github_project_heritage_housing.png)
+
+The project is designed as a kanban board with three columns: `To Do`, `In Progress`, `Done`.
+
+Each user story is created by adding an item in the `To Do` column. When work starts for a user story, it is moved to `In Progress`. When the work regarding the user story finishes, it is moved to `Done` column. The following figure demonstrates a user story. 
+
+![User story](doc_images\user_story.png)
+
+Each user story is linked to a GitHub issue as demonstrated by the following figure. It allows connected the user story to relevant GitHub branc/pull request. 
+
+![User story](doc_images\issues_connected_to_user_story.png)
+
+### User story
+
+[Describe how a user story is created]
+
+### User Stories
 
 ## How to use this repo
 
