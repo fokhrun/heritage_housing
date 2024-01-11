@@ -5,16 +5,9 @@ Heritage housing is an simple ML system that predicts prices of houses in Ames, 
 ## Table of Content
 - [Business Requirements](https://github.com/fokhrun/heritage_housing#business-Requirements-)
 - [Dataset](https://github.com/fokhrun/heritage_housing#dataset-)
-- [Hypothesis](https://github.com/fokhrun/heritage_housing#hypothesis)
+- [Hypothesis](https://github.com/fokhrun/heritage_housing#hypothesis-)
+- [Mapping Business Case To ML Solution](https://github.com/fokhrun/mapping-business-case-to-ml-solution-)
 - [Planning & Execution](https://github.com/fokhrun/heritage_housing#planning-executions-)
-- [ML System](https://github.com/fokhrun/heritage_housing#ml-system)
-    - [Initial Setup]
-    - [Data Gathering]
-    - [Data Analysis]
-    - [Feature Engineering]
-    - [Model Training]
-    - [Hypothesis Validation]
-    - [ML Dashboard]
 - [Software Development]
     - [Tech Stack]
     - [Testing]
@@ -84,9 +77,7 @@ Note that location desirability and room count also have similar effect, but the
 
 ### How the data is collected and cleansed
 
-Before we handle any of the business case, we need to acquire the data. While the data can be acquired in a plain Python script, we have chosen to implement it as a jupyter notebook titled [Data Collection](https://github.com/fokhrun/heritage_housing/blob/documentation/jupyter_notebooks/data_collection.ipynb).
-
-The notebook performs the following:
+Before we handle any of the business case, we need to acquire the data. Even though the data can be acquired using a plain Python script, we have implemented it as a jupyter notebook titled [Data Collection](https://github.com/fokhrun/heritage_housing/blob/documentation/jupyter_notebooks/data_collection.ipynb). The notebook performs the following:
 
 1. Download the data from kaggle. It is a zip file that is extracted. It provides three main data: 
     1. `house-metadata.txt`: contains description of the attributes 
@@ -101,10 +92,128 @@ The notebook performs the following:
 
 ### How the House attributes correlate with the sale price
 
-To study how the housing attributes correlate with the sale price, the following precondition should be met. 
-- The data is downloaded and cleansed: 
+To study the housing attributes and its relationship with the target variable `SalePrice`, we implemented a Jupyter notebook titled [Exploratory Data Analysis](https://github.com/fokhrun/heritage_housing/blob/documentation/jupyter_notebooks/exploratory_data_analysis.ipynb). The notebook performs the following steps:
+
+1. Read `house-metadata.txt` and prepares housing attribute descriptions as a table with the following columns `featureName`, `featureType` (inferred categorisation of features as numerical, categorical, or temporal), `featureDescription`, and `featureValues`.
+2. Read `house_prices_records.csv`, analyse its missing data, and remove columns that have 10% or more data missing. 
+3. Analyse numerical, temporal, and categorical columns as well target variable. 
+4. Analyse correlation of the housing attributes to the target variable. 
+5. Identify variables with strong and moderate correlations and preserve them to be used in the next steps. 
+
+### Analyse correlation to target variable
+
+#### Numerical and temporal attributes
+
+We used scatter plot between each numerical and temporal variables with target variable. To measure the correlation we used [Pearson correlation coefficient](https://en.wikipedia.org/wiki/Pearson_correlation_coefficient) as score titled `corr`. We used the score to also identify each column to have `very weak correlation` (`corr` < 0.3), `weak correlation` (0.3 =< `corr` < 0.5),  `moderate correlation` (0.5 =< `corr` < 0.7), and `strong correlation` (`corr` >= 0.7). 
+
+The analysis is demonstrated in the following figures. 
+
+![Correlation to numerical variables (group 1)](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/correlation_numerical_1.png
+![Correlation to numerical variables (group 2)](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/correlation_numerical_2.png)
+
+From these variables, the following have a `corr` score 0.5 or higher. 
+
+|  Variable | Score | Correlation Category |
+|---|---|---|
+| GrLivArea | 0.71 | strong |
+| GarageArea | 0.62 | moderate |
+| TotalBsmtSF | 0.61 | moderate |
+| 1stFlrSF | 0.61 | moderate |
+| YearBuilt | 0.52 | moderate |
+| YearRemodAdd | 0.51 | moderate |
+
+#### Categorical attributes
+
+For categorical attributes, I used box plots of target variable per category for each attributes. The categorical variables are have orders as they fit likert-like scales. To evaluate the correlations, we visually inspected if category order indicates reasonable sale price improvement. Please see the following image for more details. The visual inspection indicated that the following variables have a moderate to strong correlation: `KitchenQual`, `OverallCond`, `OverallQual`.
+
+![Correlation to categorical variables](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/correlation_categorical.png)
 
 ### How the trained model generates good predictions
+
+The model training is process is implemented using the Jupyter notebook titled [Model Training, Optimization, and Validation](https://github.com/fokhrun/heritage_housing/blob/documentation/jupyter_notebooks/model_training.ipynb)
+
+The process consists of the following steps:
+1. Data loading
+2. Feature Engineering
+3. Hyperparameter Tuning
+4. Model Training
+5. Model Performance Validation 
+
+#### Feature Engineering
+
+Our approach for feature engineering is as follows:
+1. Only use correlated attributes from the outcomes of exploratory data analysis: `GrLivArea`, `GarageArea`, `TotalBsmtSF`, `1stFlrSF`, `YearBuilt`, `YearRemodAdd`, `KitchenQual`, `OverallCond`, and `OverallQual`.
+2. Instead of feeding attributes directly, we will create bins out of target variable, group and aggregate attributes on the bin values (a concept inspired by histogram), and expand aggregrated features with sale prices matching the bins. 
+
+This way of feature engineering achieves the following:
+1. Efficient model training process due to small number of variables (9 instead of 23), hopefully without sacrificing the performance (due to the strong correlation nature). 
+2. A feature engineering process that would allow solving this ML problem both as a regression and classification problem. The `SalePrice` bins can also be treated as house price classes. 
+
+##### Binning SalePrice
+
+We followed a simple approach. We created histogram out of the `SalePrice`, picked the highest value from each histogram bin as the chosen `SalePrice` bin values, and mapped the `SalePrice` to these chosen values. There were 39 bins. 
+
+##### Categorical features
+
+There were three categorical attributes. We followed the approach below:
+1. For each categorical variable, we created a dummy variable for each of its categories. There were three categorical variables with 10, 10, and 5 categories, which created 25 dummy variables. Some category values were missing. So, we ultimately had 23 dummy variables. 
+2. Then for each 23 dummy variables, we grouped them based on `SalePrice` bin values and aggregated the group using `sum` and `mean` functions. These process ultimately gave us 46 features.  
+
+##### Numerical features
+
+There were four chosen numerical attributes. For each of them, we grouped them based on `SalePrice` bin values and aggregated the group using `count`, `mean`, `max`, `min`, and `sum` functions. These process ultimately gave us 20 features taking the total count of feature to 66.
+
+##### Temporal features
+
+There were two chosen temporal variables, each representing years. we picked the highest year in one of the column and used as the most recent year. Then we calculated number of years using each value in the temporal columns from the most recent date using that value. These gave us 2 features, taking the total count of features to 68.
+
+
+##### Combining features
+
+After combining features from all three threads, we got 69 variables, 68 from the features and 1 from the `SalePrice` bin. Then we joined that dataset with the `SalePrice` and `SalePrice` bins. That gave us 70 x 1460 matrix. 
+
+##### Splitting the features for training and testing
+
+We decided split the feature matrix for training and testing purposes. The training dataset has the 80% of the dataset. Although, during hyperparameter tuning, we sampled 50% of the training dataset again. We will use the remaining 20% for testing model on known but unseen data.
+
+#### Hyperparameter tuning
+
+We decided to use Random Search technique over an [XGBoost estimator](https://xgboost.readthedocs.io/en/stable/) for the following parameter configurations:
+
+- `n_estimators`: 500, 550, 600, 650, ..., 2000 
+- `learning_rate`: 0.05, 0.06, 0.07 
+- `max_depth`: 3, 5, 7
+- `min_child_weight`: 1, 1.5, 2
+
+The parameter optimisation ran for about 1.12 minutes. It generated an r2 score of 0.99 and 0.97 on full training feature and testing feature respectively with its best parameter, which happens to be `n_estimators`: 550, `min_child_weight`: 1.5, `max_depth`: 5, and `learning_rate`: 0.06. 
+
+The estimator with the best parameter had the following feature importance score for the top 10 contributing features:
+
+![Feature Importance Optimisation](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/feature_importance_opt.png)
+
+#### Model training
+
+The model is trained using XGBoost using the best parameters of the hyper parameter tuning over full training feature matrix. It only took a few seconds and generated generated an r2 score of 1 and 0.99 on full training feature and testing feature matrix respectively. 
+
+The estimator had the following feature importance score for the top 10 contributing features:
+
+![Feature Importance Optimisation](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/feature_importance_ml.png)
+
+#### Saving and using the model
+
+We saved the model in the `joblib` serialized format. The serialized modeled is loaded in memory again and tested against `inherited_houses` dataset that generated good looking predictions. 
+
+#### Evaluating if predicted and actual values have similar correlations to housing attributes
+
+We wanted to validate that the size (numerical) attributes would yield higher `SalePrice` for its larger values and lower for its lower values. Similarly validation needs to happen on condition and age attributes. 
+
+To validate the hypothesis, we compared the correlation of housing attributes to both actual and predicted `SalePrice` based on testing dataset. The following table demonstrated that the actual and predicted (on data unused in training) `SalePrice` are quite strongly correlated. 
+
+![Correlation Predicted Actuals](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/correlation_predicted_actuals.png)
+
+The following scatterplots demonstrates that the predicted (on data unused in trainin) `SalePrice` generally increase with the that of the house size, condition, and age. It shows correlation to the columns mentioned above similarly to the actual sale price.
+
+![Correlation Predicted Actuals Scatter](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/correlation_predicted_actuals_scatter.png)
 
 ### How key results are demonstrated in a dashboard
 
