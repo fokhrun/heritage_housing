@@ -3,11 +3,11 @@
 Heritage housing is an simple ML system that predicts prices of houses in Ames, Iowa, US, by using gradient-boosting based ML regression technique that maps relationships between housing attributes to its sale prices. 
 
 ## Table of Content
-- [Business Requirements](https://github.com/fokhrun/heritage_housing#business-Requirements-)
-- [Dataset](https://github.com/fokhrun/heritage_housing#dataset-)
-- [Hypothesis](https://github.com/fokhrun/heritage_housing#hypothesis-)
-- [Mapping Business Case To ML Solution](https://github.com/fokhrun/mapping-business-case-to-ml-solution-)
-- [Planning & Execution](https://github.com/fokhrun/heritage_housing#planning-executions-)
+- [Business Requirements](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#business-requirements)
+- [Dataset](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#dataset)
+- [Hypothesis](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#dataset)
+- [Mapping Business Case To ML Solution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#mapping-business-case-to-ml-solution)
+- [Planning & Execution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#planning--execution)
 - [Software Development]
     - [Tech Stack]
     - [Testing]
