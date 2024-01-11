@@ -74,7 +74,7 @@ with correlation_tab:
         target_column=target_column
     )
 
-    st.markdown("### Highly correlated Features")
+    st.markdown("### Highly Correlated Features")
     col1, col2 = st.columns(2)
 
     with col1:
