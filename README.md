@@ -215,7 +215,20 @@ The following scatterplots demonstrates that the predicted (on data unused in tr
 
 ![Correlation Predicted Actuals Scatter](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/correlation_predicted_actuals_scatter.png)
 
-### How key results are demonstrated in a dashboard
+### How key results are demonstrated in ML dashboard application
+
+The objectives of the ML dashboard are given as follows:
+
+1. Provide overview of the overall business problem
+2. Demonstrate how to leverage the model to predict house prices
+3. Demonstrate how to understand the training data and its correlation to target variable
+4. Demonstrate how to understand the performance of the model
+
+The ML dashboard is developed as a multipage app that realizes the above objectives. 
+
+![Correlation Predicted Actuals Scatter](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/dashboard_page.png)
+
+####  Das
 
 ## Planning & Execution
 
