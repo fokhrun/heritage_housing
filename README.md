@@ -108,7 +108,7 @@ We used scatter plot between each numerical and temporal variables with target v
 
 The analysis is demonstrated in the following figures. 
 
-![Correlation to numerical variables (group 1)](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/correlation_numerical_1.png
+![Correlation to numerical variables (group 1)](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/correlation_numerical_1.png)
 ![Correlation to numerical variables (group 2)](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/correlation_numerical_2.png)
 
 From these variables, the following have a `corr` score 0.5 or higher. 
@@ -225,7 +225,9 @@ The objectives of the ML dashboard are given as follows:
 
 The ML dashboard is developed as a multipage Streamlit app that realizes the above objectives. The live version of the dashboard can be found [here](https://binita-heritage-housing-cb7da8771259.herokuapp.com/). 
 
-![Correlation Predicted Actuals Scatter](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/dashboard_page.png)
+![Dashboard page](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/dashboard_page.png)
+
+The first page presents the same information as covered in [Business Requirements](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#business-requirements). The others pages are covered in the following sections.
 
 #### House price prediction dashboard page
 
@@ -266,6 +268,26 @@ The second subsection shows correlation of housing attributes to `SalePrice` var
 Check the following screenshot to get a brief understanding of the subsection:
 
 ![correlation to sale price](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/correlation_to_saleprice_page.png)
+
+#### Training performance analysis page
+
+This page contains three subsections separated by tabs:
+
+1. Project hypothesis
+2. Performance of ml model training that uses the best parameters from the hyper parameter tuning
+3. Performance of hyperparameter tuning that tries to search the best parameters
+
+The first subsection shows the same information as in - [Hypothesis](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#dataset).
+
+The second subsection shows the performance of the ML model training. First of all, it shows what r2 and mse score the model has on training features (seen data) and testing features (unseen data). It also shows what are key parameters leveraged by the estimator used for prediction. In addition, it also shows how the estimator learned through an expander, which a user can choose to see. Finally, it shows how hypothesis in the projects are validated by the estimator through a set of scatterplot as well as key conclusiions. The following image shows the screenshot of the subsection:
+
+![Training performance](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/modelling_performance_page.png)
+
+The third subsection shows the hyperparameter tuning performance. First it shows the performance of the best estimator searched by the tuning process on both training and testing data on r2 and mse score. It also shows the performance of the top tried estimators, highlighting the best estimator. Both of these information are on expander, which allows user to choose to see or not.
+
+![Training performance](https://github.com/fokhrun/heritage_housing/blob/documentation/doc_images/hyperparameter_tuning_page.png)
+
+To learn more about the training and hyperparameter tuning process and performance, check the section [How the trained model generates good predictions](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#how-the-trained-model-generates-good-predictions)
 
 ## Planning & Execution
 
