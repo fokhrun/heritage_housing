@@ -28,4 +28,6 @@ The dataset used in this project is a curated dataset of publicly available Ames
 The dataset contains 24 explanatory variables describing key attributes of residential homes and
 their sale prices in Ames, Iowa. It contains unique records of 1430 houses.
 The dataset can be downloaded from [here](https://www.kaggle.com/datasets/codeinstitute/housing-prices-data).
+
+- For additional information, please visit and read the Project [README](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md) file.
 """)
