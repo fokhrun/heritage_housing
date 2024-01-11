@@ -8,12 +8,7 @@ Heritage housing is an simple ML system that predicts prices of houses in Ames, 
 - [Hypothesis](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#dataset)
 - [Mapping Business Case To ML Solution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#mapping-business-case-to-ml-solution)
 - [Planning & Execution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#planning--execution)
-- [Software Development]
-    - [Tech Stack]
-    - [Testing]
-    - [Deployment]
-    - [Development Environment]
-    - [Credits]
+
 
 ## Business requirements
 The client is interested in a dashboard application that allows her to maximize sale price of her inherited houses in the Ames, Iowa area, as well as any other houses in that area. The dashboard should includes 
@@ -289,6 +284,32 @@ The third subsection shows the hyperparameter tuning performance. First it shows
 
 To learn more about the training and hyperparameter tuning process and performance, check the section [How the trained model generates good predictions](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#how-the-trained-model-generates-good-predictions)
 
+## Software Development
+
+### Tech Stack
+
+The main tech stack for this project is as follows:
+
+- Programming Language: `Python`
+- Machine Learning and data analysis
+    - `jupyter`: for interacting and visual heavy development
+    - `pandas` & `numpy`: large dataset wrangling
+    - `XGBoost` & `scikit-learn`: ML and statistical work
+    - `matplotlib` & `seaborn`: data visualization
+    - `kaggle`: for data sourcing
+- Dashboard/Application: `streamlit`
+- Environment management: `python-dotenv`
+- Version control: `GitHub`
+- Project Managgement: `GitHub projects`
+- Production Environment: `Heroku`
+- IDE: `VS Code`
+
+### Development Environment
+
+### Testing
+
+### Deployment
+    
 ## Planning & Execution
 
 The project followed a simple agile method, with the 5 main epics:
@@ -332,6 +353,7 @@ The execution of the user story typically starts at the codebase, with a branch 
 | Dashboard | [Dashboard planning, designing, and development](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=&pane=issue&itemId=46690128) |
 |  | [Dashboard deployment and release](https://github.com/fokhrun/heritage_housing/issues/12) |
 | Documentation | [Documentation](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=&pane=issue&itemId=49358304) |
+
 
 ## How to use this repo
 
