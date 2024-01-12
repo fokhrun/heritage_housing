@@ -290,23 +290,97 @@ To learn more about the training and hyperparameter tuning process and performan
 
 The main tech stack for this project is as follows:
 
-- Programming Language: `Python`
+- Programming Language: `Python` (3.11.6)
 - Machine Learning and data analysis
     - `jupyter`: for interacting and visual heavy development
-    - `pandas` & `numpy`: large dataset wrangling
-    - `XGBoost` & `scikit-learn`: ML and statistical work
-    - `matplotlib` & `seaborn`: data visualization
-    - `kaggle`: for data sourcing
-- Dashboard/Application: `streamlit`
-- Environment management: `python-dotenv`
+    - `pandas` (2.1.3) & `numpy` (1.26.2): large dataset wrangling
+    - `xgboost` (2.0.3) & `scikit-learn` (1.3.2): ML and statistical work
+    - `matplotlib` (3.8.2) & `seaborn` (0.13.0): data visualization
+    - `kaggle` (1.5.16): for data sourcing
+- Dashboard/Application: `streamlit` (1.29.0)
+- Environment management: 
+    - `pip` (23.3.1): Python library management
+    - `venv` 
+    - `python-dotenv` (1.0.0): Handle environment variables
 - Version control: `GitHub`
-- Project Managgement: `GitHub projects`
+- Project Managgement: `GitHub projects` 
 - Production Environment: `Heroku`
-- IDE: `VS Code`
+- IDE: `VS Code` (1.85.1)
 
 ### Development Environment
 
+The initial GitHub repo starts from the starter repo [milestone-project-heritage-housing-issues](Code-Institute-Solutions/milestone-project-heritage-housing-issues) provided by Code Institute. The starter repo includes a notebook folder structure, configuration examples of deploying streamlit dashboard to heroku, and a starter `requirements.txt` file. 
+
+The project is cloned in a local VS code workspace. It leverages pip and venv module to install and isolate the execution environment. Notice that Python and other python library versions are more modern in this project then what is provided by starter repo. This came through repeated trial/error of what library version would work that would not come in the way of deploying streamlit dashboard to heroku. 
+
+To start developing with this repo, use the following procedure:
+```
+1. Ensure that you have a Python version of at least Python v3.11 and pip v23.3.1
+2. Clone the repository https://github.com/fokhrun/heritage_housing.git as heritage_housing in your local directory
+3. Work inside heritage_housing
+```
+
+We strongly recommend using venv as follows:
+```
+1. python3 -m venv venv
+2. .\venv\Scripts\activate
+3. pip install -r .\requirements.txt
+```
+
+#### Working with notebooks for ML work
+To start working with jupyter notebooks, run the command `jupyter notebook`. It will launch a jupter workspace. Start working with the existing notebooks. Currently there are three notebooks:
+1. `data_collection.ipynb`: collecting data from kaggle.com
+2. `exploratory_data_analysis.ipynb`: training data analysis including correlation study
+3. `model_training.ipynb`: ML model training to be used for house price prediction
+
+One can create a new one from the `Notebook_Template.ipynb`, the template came from the starter repo and is quite useful. 
+However, we chose to handle environment variables differently than the template notebook recommends. Basically, not only, we define all secret information as environment variables, but we also use define all path and filename variables as environment variables. There are other ways to do it, but it is quite effective to use the same variable everywhere. 
+
+#### Working with streamlit dashboard
+
+To start working with streamlit, run the command `streamlit run Heritage_Housing.py`. Then it will start a streamlit application in the browser. 
+
+The top page of the dashboard is always defined by the main app page, `Heritage_Housing.py`, in our case. This file contains project overview information. All the other pages are created under the pages folder. We have three such page python codes:
+
+1. `1_Housing_Price_Prediction.py`: prediction generation
+2. `2_Housing_Data.py`: Training data analysis overview
+3. `3_Training_Performance.py`: Hypothesis and performance of the training process
+
+Note that, the naming style influence how the dashboard page menu is created. For example, the number influences how the pages are ordered and the case and spacing of the files influences how the title of each page is shown in the menu. 
+
+In case of streamlit dashboard, almost all data and file resources are cached. If you are changing the data or files, make sure to restart the service. 
+
 ### Testing
+
+No automated unit tests were implemented for the Python files, due to lack of time. However, each Python file has been cleansed to remove pep8 issues. We did it using the warnings raised by the command
+
+    `pylint pylint .\utils\ .\pages\ .\Heritage_Housing.py`
+
+It generated a score of 10 out of 10. A few warning has been disabled to take care of unavoidable issues. 
+
+### Testing notebook files
+
+Only data shapes are tested using assert function, such as follows:
+
+```assert inherited_houses_numerical.shape == (prediction_subset.shape[0], len(numerical_feature_names))```
+
+The best way to run these tests are executing the notebooks top to bottom.
+
+### Testing streamlit app
+
+A few data shapes are tested using the assert function similar to the above. 
+The dashboard has been tested manually as follows:
+
+- `1_Housing_Price_Prediction.py` is tested by choosing the same inputs as the one of the inherited houses. If it generates the same `SalePrice` it is generating a consistant result. It is also tested, if clicking `Reset` button actually resets the prediction results to four inherited houses, once a prediction has been generated. 
+- `2_Housing_Data.py` and `3_Training_Performance.py` are tested by clicking each tab and expander and observing if the information seems visually correct. They are further verified by comparing them against similar outputs in `exploratory_data_analysis.ipynb` and `model_training.ipynb` respectively.
+
+
+
+
+For the dashb
+All testing are done manually. 
+
+
 
 ### Deployment
     

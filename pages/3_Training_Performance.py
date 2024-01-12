@@ -47,10 +47,10 @@ with hypothesis_tab:
     st.markdown("""
         Our hypothesis should be validated by the following observations:
 
-        - Both the actual and predicted (on data unused in training) Sale Price should be 
+        - Both the actual and predicted (on data unused in training) Sale Price should be
         very strongly correlated
-        - The predicted (on data unused in training) Sale Price should generally increase 
-        with the increase in the house size, condition, and age. It should show correlation 
+        - The predicted (on data unused in training) Sale Price should generally increase
+        with the increase in the house size, condition, and age. It should show correlation
         to the columns mentioned above similarly to the actual sale price.
     """)
 
@@ -78,7 +78,7 @@ with training_tab:
         st.markdown("""
             The above correlation plot validates the following:
             - the predicted sale price is very strongly correlated to the actual sale price
-            - the predicted sale price typical increases with the increase in the house size, 
+            - the predicted sale price typical increases with the increase in the house size,
             condition, and age
         """)
 
