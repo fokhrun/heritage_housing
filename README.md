@@ -4,13 +4,13 @@ Heritage housing is a simple ML system that predicts prices of houses in Ames, I
 
 ## Table of Content
 - [Business Requirements](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#business-requirements)
-- [Dataset](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#dataset)
-- [Hypothesis](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#dataset)
-- [Mapping Business Case To ML Solution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#mapping-business-case-to-ml-solution)
-- [Software Development](https://github.com/fokhrun/heritage_housing//blob/documentation/README.md#software-development)
-- [Planning & Execution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#planning--execution)
-- [Future Improvements](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#future-improvements)
-- [Credits](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#credits)
+- [Dataset](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#dataset-)
+- [Hypothesis](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#hypothesis-)
+- [Mapping Business Case To ML Solution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#mapping-business-case-to-ml-solution-)
+- [Software Development](https://github.com/fokhrun/heritage_housing//blob/documentation/README.md#software-development-)
+- [Planning & Execution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#planning--execution-)
+- [Future Improvements](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#future-improvements-)
+- [Credits](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#credits-)
 
 ## Business requirements
 The client is interested in a dashboard application that allows her to maximize the sale price of her inherited houses in the Ames, Iowa area, as well as any other houses in that area. The dashboard should include 
@@ -19,7 +19,7 @@ The client is interested in a dashboard application that allows her to maximize 
 - A way to explain the predictions made by the estimator. The estimator should demonstrate an R2 score of at least 0.75 on the training and the test data.
 - Hypothesis used in the project and how it has been validated
 
-## Dataset
+## Dataset [^](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#table-of-content)
 The dataset used in this project is a curated version of the publicly available Ames Housing dataset. The dataset contains 24 explanatory variables describing key attributes of residential homes and their sale prices in Ames, Iowa. It contains unique records of 1430 houses. The dataset can be downloaded from [here](https://www.kaggle.com/datasets/codeinstitute/housing-prices-data).
 
 |  Num | Variables | Type | Description | Value |
@@ -49,7 +49,7 @@ The dataset used in this project is a curated version of the publicly available 
 | 23 | YearRemodAdd | temporal | Remodel date |	1950 - 2010 |
 | 24 | SalePrice | numerical | Sale Price |	34900 - 755000 |
 
-## Hypothesis
+## Hypothesis [^](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#table-of-content)
 
 The target variable in this project is SalePrice, which represents the sale price of houses. The factors that affect these prices are:
 
@@ -70,7 +70,7 @@ These hypotheses should be validated by the following observations:
 
 Note that location desirability and room count also have similar effects, but the dataset did not have those variables.
 
-## Mapping Business Case To ML Solution
+## Mapping Business Case To ML Solution [^](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#table-of-content)
 
 ### How the data is collected and cleansed
 
@@ -286,7 +286,7 @@ The third subsection shows the hyperparameter tuning performance. First, it show
 
 To learn more about the training and hyperparameter tuning process and performance, check the section [How the trained model generates good predictions](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#how-the-trained-model-generates-good-predictions)
 
-## Software Development
+## Software Development [^](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#table-of-content)
 
 ### Tech Stack
 
@@ -408,7 +408,7 @@ To deploy use the following instructions:
 
 Some element of the dashboards loads a bit slowly the first time. This is because some of the plots are calculated on demand. These plots should be pre-computed and loaded as a file in the dashboard.
 
-## Planning & Execution
+## Planning & Execution [^](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#table-of-content)
 
 The project followed a simple agile method, with the 5 main epics:
 - Bootstrap
@@ -452,7 +452,7 @@ The execution of the user story typically starts at the codebase, with a branch 
 |  | [Dashboard deployment and release](https://github.com/fokhrun/heritage_housing/issues/12) |
 | Documentation | [Documentation](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=&pane=issue&itemId=49358304) |
 
-## Future Improvements
+## Future Improvements [^](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#table-of-content)
 
 1. The bulk of the code used in the Jupyter Notebooks is written as flat Python script. A sizable part of the code should be placed inside functions in order to reduce similar-looking codes. It would also allow testing part of jupyter notebook code in a better way.
 2. Implement automated unit testing for Python functions. 
@@ -462,7 +462,7 @@ The execution of the user story typically starts at the codebase, with a branch 
 6. Other estimators, such as Random Forest, LightGBM, etc., should be tried to compare modeling performance.
 7. A classification-based technique can tried to compare modeling performance. 
 
-## Credits 
+## Credits [^](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#table-of-content)
 
 1. Notebook codes: While no code written by others has been used directly, we explore several notebooks to draw inspiration and get a better understanding. The notebooks can be found in [House Prices - Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/code).
 2. Streamlit codes: In addition to the official streamlit documentation, this [article](https://medium.com/streamlit/paginating-dataframes-with-streamlit-2da29b080920) is used to implement the pagination technique in one of the pages in the dashboard. 
