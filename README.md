@@ -4,13 +4,13 @@ Heritage housing is a simple ML system that predicts prices of houses in Ames, I
 
 ## Table of Content
 - [Business Requirements](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#business-requirements)
-- [Dataset](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#dataset)
-- [Hypothesis](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#hypothesis)
-- [Mapping Business Case To ML Solution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#mapping-business-case-to-ml-solution)
-- [Software Development](https://github.com/fokhrun/heritage_housing//blob/documentation/README.md#software-development)
-- [Planning & Execution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#planning--execution)
-- [Future Improvements](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#future-improvements)
-- [Credits](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#credits)
+- [Dataset](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#dataset-)
+- [Hypothesis](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#hypothesis-)
+- [Mapping Business Case To ML Solution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#mapping-business-case-to-ml-solution-)
+- [Software Development](https://github.com/fokhrun/heritage_housing//blob/documentation/README.md#software-development-)
+- [Planning & Execution](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#planning--execution-)
+- [Future Improvements](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#future-improvements-)
+- [Credits](https://github.com/fokhrun/heritage_housing/blob/documentation/README.md#credits-)
 
 ## Business requirements
 The client is interested in a dashboard application that allows her to maximize the sale price of her inherited houses in the Ames, Iowa area, as well as any other houses in that area. The dashboard should include 
