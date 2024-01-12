@@ -374,16 +374,38 @@ The dashboard has been tested manually as follows:
 - `1_Housing_Price_Prediction.py` is tested by choosing the same inputs as the one of the inherited houses. If it generates the same `SalePrice` it is generating a consistant result. It is also tested, if clicking `Reset` button actually resets the prediction results to four inherited houses, once a prediction has been generated. 
 - `2_Housing_Data.py` and `3_Training_Performance.py` are tested by clicking each tab and expander and observing if the information seems visually correct. They are further verified by comparing them against similar outputs in `exploratory_data_analysis.ipynb` and `model_training.ipynb` respectively.
 
+### Deployment to production
 
+The app is deployed in Heroku.
 
+To prepare for the deployment, we used three files: 
 
-For the dashb
-All testing are done manually. 
+- `runtime.txt`: should have `python-3.11.6`
+- `setup.sh`: keep it as it came with the starter template. Add the line `mv .env_template_unix .env` so that correct env variables are loaded in the heroku machine. 
+- `Procfile`: should have web: `sh setup.sh && streamlit run Heritage_Housing.py`
 
+To deploy use the following instructions:
 
+1. Create a new app in [Heroku](https://dashboard.heroku.com/apps)
+2. Fill the form with the app name of your choosing, e.g., "heritage_housing" and "Europe" as the region
+3. Stay with Heroku-22 stack
+4. Select Deploy
+    1. Choose "GitHub
+    2. Search the GitHub repo name `heritage_housing`. Once the repo is found, connect the repo.
+    3. Choose the default branch to deploy, i.e., the `main` branch. If you are working with another branch, choose accordingly.
+    4. Click "Enable Automatic Deploys" which allows the app to be redeployed for every commit.
+    5. Click "Deploy Branch" for the first manual push.
+5. Select Open app to verify that the app has deployed.
 
-### Deployment
-    
+### Fixed bugs
+
+1. While choosing highly correlated variables, only moderate correlations were used due to an input mistake. It led to lower r2 score, as variables with high correlation were ignored. It was fixed afterwards. 
+2. While running hyperparameter tuning, mse with positive scoring was chosen, where it should have been a negative score. That also led to a lower r2 score. It was fixed afterwards.
+
+### Unfixed bugs
+
+Some element of the dashboards loads a bit slow the first time. This is because some of the plots are calculated on-demand. These plots should be pre-computed and loaded as a file in the dashboard.
+
 ## Planning & Execution
 
 The project followed a simple agile method, with the 5 main epics:
@@ -428,130 +450,15 @@ The execution of the user story typically starts at the codebase, with a branch 
 |  | [Dashboard deployment and release](https://github.com/fokhrun/heritage_housing/issues/12) |
 | Documentation | [Documentation](https://github.com/users/fokhrun/projects/3/views/1?filterQuery=&pane=issue&itemId=49358304) |
 
+## Future Improvements
 
-## How to use this repo
-
-1. Use this template to create your GitHub project repo
-
-1. Log into <a href="https://app.codeanywhere.com/" target="_blank" rel="noreferrer">CodeAnywhere</a> with your GitHub account.
-
-1. On your Dashboard, click on the New Workspace button
-
-1. Paste in the URL you copied from GitHub earlier
-
-1. Click Create
-
-1. Wait for the workspace to open. This can take a few minutes.
-
-1. Open a new terminal and <code>pip3 install -r requirements.txt</code>
-
-1. In the terminal type <code>pip3 install jupyter</code>
-
-1. In the terminal type <code>jupyter notebook --NotebookApp.token='' --NotebookApp.password=''</code> to start the jupyter server.
-
-1. Open port 8888 preview or browser
-
-1. Open the jupyter_notebooks directory in the jupyter webpage that has opened and click on the notebook you want to open.
-
-1. Click the button Not Trusted and choose Trust.
-
-Note that the kernel says Python 3. It inherits from the workspace so it will be Python-3.8.12 as installed by our template. To confirm this you can use <code>! python --version</code> in a notebook code cell.
-
-
-## Cloud IDE Reminders
-
-To log into the Heroku toolbelt CLI:
-
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In your Cloud IDE, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
-
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
-
-## Dataset Content
-* The dataset is sourced from [Kaggle](https://www.kaggle.com/codeinstitute/housing-prices-data). We then created a fictitious user story where predictive analytics can be applied in a real project in the workplace. 
-* The dataset has almost 1.5 thousand rows and represents housing records from Ames, Iowa, indicating house profile (Floor Area, Basement, Garage, Kitchen, Lot, Porch, Wood Deck, Year Built) and its respective sale price for houses built between 1872 and 2010.
-
-|Variable|Meaning|Units|
-|:----|:----|:----|
-|1stFlrSF|First Floor square feet|334 - 4692|
-|2ndFlrSF|Second-floor square feet|0 - 2065|
-|BedroomAbvGr|Bedrooms above grade (does NOT include basement bedrooms)|0 - 8|
-|BsmtExposure|Refers to walkout or garden level walls|Gd: Good Exposure; Av: Average Exposure; Mn: Minimum Exposure; No: No Exposure; None: No Basement|
-|BsmtFinType1|Rating of basement finished area|GLQ: Good Living Quarters; ALQ: Average Living Quarters; BLQ: Below Average Living Quarters; Rec: Average Rec Room; LwQ: Low Quality; Unf: Unfinshed; None: No Basement|
-|BsmtFinSF1|Type 1 finished square feet|0 - 5644|
-|BsmtUnfSF|Unfinished square feet of basement area|0 - 2336|
-|TotalBsmtSF|Total square feet of basement area|0 - 6110|
-|GarageArea|Size of garage in square feet|0 - 1418|
-|GarageFinish|Interior finish of the garage|Fin: Finished; RFn: Rough Finished; Unf: Unfinished; None: No Garage|
-|GarageYrBlt|Year garage was built|1900 - 2010|
-|GrLivArea|Above grade (ground) living area square feet|334 - 5642|
-|KitchenQual|Kitchen quality|Ex: Excellent; Gd: Good; TA: Typical/Average; Fa: Fair; Po: Poor|
-|LotArea| Lot size in square feet|1300 - 215245|
-|LotFrontage| Linear feet of street connected to property|21 - 313|
-|MasVnrArea|Masonry veneer area in square feet|0 - 1600|
-|EnclosedPorch|Enclosed porch area in square feet|0 - 286|
-|OpenPorchSF|Open porch area in square feet|0 - 547|
-|OverallCond|Rates the overall condition of the house|10: Very Excellent; 9: Excellent; 8: Very Good; 7: Good; 6: Above Average; 5: Average; 4: Below Average; 3: Fair; 2: Poor; 1: Very Poor|
-|OverallQual|Rates the overall material and finish of the house|10: Very Excellent; 9: Excellent; 8: Very Good; 7: Good; 6: Above Average; 5: Average; 4: Below Average; 3: Fair; 2: Poor; 1: Very Poor|
-|WoodDeckSF|Wood deck area in square feet|0 - 736|
-|YearBuilt|Original construction date|1872 - 2010|
-|YearRemodAdd|Remodel date (same as construction date if no remodelling or additions)|1950 - 2010|
-|SalePrice|Sale Price|34900 - 755000|
-
-
-
-
-
-## Business Requirements
-As a good friend, you are requested by your friend, who has received an inheritance from a deceased great-grandfather located in Ames, Iowa, to  help in maximising the sales price for the inherited properties.
-
-Although your friend has an excellent understanding of property prices in her own state and residential area, she fears that basing her estimates for property worth on her current knowledge might lead to inaccurate appraisals. What makes a house desirable and valuable where she comes from might not be the same in Ames, Iowa. She found a public dataset with house prices for Ames, Iowa, and will provide you with that.
-
-* 1 - The client is interested in discovering how the house attributes correlate with the sale price. Therefore, the client expects data visualisations of the correlated variables against the sale price to show that.
-* 2 - The client is interested in predicting the house sale price from her four inherited houses and any other house in Ames, Iowa.
-
-
-## Hypothesis and how to validate?
-* List here your project hypothesis(es) and how you envision validating it (them).
-
-
-## The rationale to map the business requirements to the Data Visualisations and ML tasks
-* List your business requirements and a rationale to map them to the Data Visualisations and ML tasks.
-
-
-## ML Business Case
-* In the previous bullet, you potentially visualised an ML task to answer a business requirement. You should frame the business case using the method we covered in the course.
-
-
-## Dashboard Design
-* List all dashboard pages and their content, either blocks of information or widgets, like buttons, checkboxes, images, or any other items that your dashboard library supports.
-* Eventually, during the project development, you may revisit your dashboard plan to update a given feature (for example, at the beginning of the project you were confident you would use a given plot to display an insight but eventually you needed to use another plot type)
-
-
-
-## Unfixed Bugs
-* You will need to mention unfixed bugs and why they were not fixed. This section should include shortcomings of the frameworks or technologies used. Although time can be a big variable to consider, paucity of time and difficulty understanding implementation is not valid reason to leave bugs unfixed.
-
-## Deployment
-### Heroku
-
-* The App live link is: https://YOUR_APP_NAME.herokuapp.com/ 
-* Set the runtime.txt Python version to a [Heroku-20](https://devcenter.heroku.com/articles/python-support#supported-runtimes) stack currently supported version.
-* The project was deployed to Heroku using the following steps.
-
-1. Log in to Heroku and create an App
-2. At the Deploy tab, select GitHub as the deployment method.
-3. Select your repository name and click Search. Once it is found, click Connect.
-4. Select the branch you want to deploy, then click Deploy Branch.
-5. The deployment process should happen smoothly if all deployment files are fully functional. Click the button Open App on the top of the page to access your App.
-6. If the slug size is too large then add large files not required for the app to the .slugignore file.
-
-## Main Data Analysis and Machine Learning Libraries
-* Here you should list the libraries you used in the project and provide example(s) of how you used these libraries.
-
+1. Bulk of the code used in the jupyter notebooks are written as flat Python script. A sizable part of the code should be placed inside functions in order to reduce similar looking codes. It would also allow testing part of jupyter notebook code in a better way.
+2. Implement automated unit testing for python functions. 
+3. More variables can be used in feature engineering to see if it effects modeling performance without consuming too much time. 
+4. Feature engineering with plain variables should be tried to understand if it effects modeling performance.
+5. Other hyper parameter tuning approach, such as Grid Search, HyperOpt, etc., should be tried to understand if it effects modeling performance and time. 
+6. Other estimators, such as Random Forest, LightGBM, etc., should be tried to compare modeling performance.
+7. A classification based technique can tried to compare modeling performance. 
 
 ## Credits 
 
