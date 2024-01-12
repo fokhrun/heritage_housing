@@ -24,7 +24,7 @@ The dataset used in this project is a curated version of publicly available Ames
 |---|---|---|---|---|
 | 1 | 1stFlrSF | numerical | First Floor square feet | 334 - 4692 |
 | 2 | 2ndFlrSF | numerical | Second floor square feet |	0 - 2065 |
-| 3	| BedroomAbvGr | categorical | Bedrooms above grade (does NOT include baseme... | 0 - 8 |
+| 3	| BedroomAbvGr | categorical | Bedrooms above grade (does NOT include basement | 0 - 8 |)
 | 4	| BsmtExposure | categorical | Refers to walkout or garden level walls | Gd: Good Exposure, Av: Average Exposure, ...|
 | 5	| BsmtFinType1 | categorical | Rating of basement finished area | GLQ: Good Living Quarters, ALQ: Average Living, ...|
 | 6	| BsmtFinSF1 | numerical | Type 1 finished square feet | 0 - 5644 |
@@ -462,22 +462,6 @@ The execution of the user story typically starts at the codebase, with a branch 
 
 ## Credits 
 
-* In this section, you need to reference where you got your content, media and extra help from. It is common practice to use code from other repositories and tutorials, however, it is important to be very specific about these sources to avoid plagiarism. 
-* You can break the credits section up into Content and Media, depending on what you have included in your project. 
-
-### Content 
-
-- The text for the Home page was taken from Wikipedia Article A
-- Instructions on how to implement form validation on the Sign-Up page was taken from [Specific YouTube Tutorial](https://www.youtube.com/)
-- The icons in the footer were taken from [Font Awesome](https://fontawesome.com/)
-
-### Media
-
-- The photos used on the home and sign-up page are from This Open Source site
-- The images used for the gallery page were taken from this other open-source site
-
-
-
-## Acknowledgements (optional)
-* In case you would like to thank the people that provided support through this project.
-
+1. Notebook codes: While no code written by other has been used directly, we explore several notebooks to draw inspiration and get a better understanding. The notebooks can be found in [House Prices - Advanced Regression Techniques](https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/code).
+2. Streamlit codes: In addition to the official streamlit documentation, this [article](https://medium.com/streamlit/paginating-dataframes-with-streamlit-2da29b080920) is used to implement the pagination technique in one of the pages in the dashboard. 
+3. Overall many [stackoverflow](https://stackoverflow.com/) posts has been studied to figure out how to manipulate pandas dataframe effectively. No direct code has been used though.
