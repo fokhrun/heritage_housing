@@ -1,6 +1,11 @@
+"""Streamlit page for housing data analysis"""
+
+# pylint: disable=C0103,E0401
+
 import streamlit as st
 from utils.st_data_utils import (
-    get_correlated_variables, get_na_data, get_training_data, get_training_variable_info, view_training_data
+    get_correlated_variables, get_na_data, get_training_data, get_training_variable_info,
+    view_training_data
 )
 from utils.st_insight_utils import plot_correlated_features, plot_data_distribution
 from utils.st_parameters import page_icon, plot_columns, separator, target_column
@@ -19,7 +24,9 @@ training_data = get_training_data()
 correlated = get_correlated_variables()
 
 
-training_data_tab, correlation_tab = st.tabs(["Basic Data Analysis", f"Correlation To {target_column}"])
+training_data_tab, correlation_tab = st.tabs([
+    "Basic Data Analysis", f"Correlation To {target_column}"
+])
 
 
 with training_data_tab:
@@ -89,7 +96,8 @@ with correlation_tab:
 
         st.write("- Numerical variables: moderate and above correlation coefficient score")
         st.write("- Temporal variables: moderate and above correlation coefficient score")
-        st.write("- Categorical features: if the median value per category increases with the sale price")
+        st.write("- Categorical variables: if the median value per category increases"
+                 "with the sale price")
 
     with st.expander(f"High Correlated Features vs {target_column}"):
         st.pyplot(high_correlated_fig)

@@ -1,3 +1,6 @@
+"""Utility functions for insight generation"""
+
+# pylint: disable=R0914,C0103
 
 import pandas as pd
 import seaborn as sns
@@ -5,7 +8,19 @@ from matplotlib import pyplot as plt
 
 
 def get_correlation(data, categorical_variables, dependent_variable, independent_variable):
+    """ Get the correlation between the dependent and independent variables.
 
+    Parameters
+    ----------
+    data : pandas.DataFrame
+    categorical_variables : list
+    dependent_variable : str
+    independent_variable : str
+
+    Returns
+    -------
+    corr_value : float
+    """
     if independent_variable in categorical_variables:
         corr_value = 0.0
         corr_description = "categorical:not applicable"
@@ -34,8 +49,23 @@ def get_correlation(data, categorical_variables, dependent_variable, independent
 
 
 def plot_correlated_features(plot_columns, chosen_variables, data, variable_info, target_column):
+    """Plot the correlated features.
 
-    categorical_variables = variable_info[variable_info["featureType"] == "categorical"]["featureName"].tolist()
+    Parameters
+    ----------
+    plot_columns : list
+    chosen_variables : list
+    data : pandas.DataFrame
+    variable_info : pandas.DataFrame
+    target_column : str
+
+    Returns
+    -------
+    fig : matplotlib.figure.Figure
+    """
+    categorical_variables = variable_info[
+        variable_info["featureType"] == "categorical"
+    ]["featureName"].tolist()
 
     plot_rows = int(len(chosen_variables) / 2)
     plot_height = 2.5 * plot_rows
@@ -51,7 +81,9 @@ def plot_correlated_features(plot_columns, chosen_variables, data, variable_info
             dependent_variable=target_column,
             independent_variable=var
         )
-        var_description = variable_info[variable_info["featureName"] == var]["featureDescription"].values[0]
+        var_description = variable_info[
+            variable_info["featureName"] == var
+        ]["featureDescription"].values[0]
         X_train = data[var]
         y_train = data[target_column]
 
@@ -71,8 +103,23 @@ def plot_correlated_features(plot_columns, chosen_variables, data, variable_info
 
 
 def plot_data_distribution(plot_columns, variable_info, data):
+    """
+    Plot the data distribution.
 
-    categorical_variables = variable_info[variable_info["featureType"] == "categorical"]["featureName"]
+    Parameters
+    ----------
+    plot_columns : list
+    variable_info : pandas.DataFrame
+    data : pandas.DataFrame
+
+    Returns
+    -------
+    fig : matplotlib.figure.Figure
+    """
+
+    categorical_variables = variable_info[
+        variable_info["featureType"] == "categorical"
+    ]["featureName"]
 
     plot_rows = int(len(data.columns) / plot_columns)
     plot_width = 12
