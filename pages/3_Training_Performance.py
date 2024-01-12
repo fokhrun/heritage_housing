@@ -1,3 +1,6 @@
+"""Training Performance page shown when the user enters the application """
+
+# pylint: disable=C0103,E0401
 
 import numpy as np
 import pandas as pd
@@ -19,7 +22,9 @@ page_title = "Training Performance"
 st.set_page_config(page_title=page_title, page_icon=page_icon)
 st.markdown(f"# {page_title}")
 
-hypothesis_tab, training_tab, optimisation_tab = st.tabs(["Hypothesis", "Model Training", "Hyperparameter Tuning"])
+hypothesis_tab, training_tab, optimisation_tab = st.tabs([
+    "Hypothesis", "Model Training", "Hyperparameter Tuning"
+])
 
 correlated = get_correlated_variables()
 
@@ -42,14 +47,16 @@ with hypothesis_tab:
     st.markdown("""
         Our hypothesis should be validated by the following observations:
 
-        - Both the actual and predicted (on data unused in training) Sale Price should be very strongly correlated
-        - The predicted (on data unused in training) Sale Price should generally increase with the increase in
-        the house size, condition, and age. It should show correlation to the columns mentioned above similarly
-        to the actual sale price.
+        - Both the actual and predicted (on data unused in training) Sale Price should be
+        very strongly correlated
+        - The predicted (on data unused in training) Sale Price should generally increase
+        with the increase in the house size, condition, and age. It should show correlation
+        to the columns mentioned above similarly to the actual sale price.
     """)
 
     st.markdown("""
-        Note: Location desirability and number of rooms also have similar effect, but the dataset did not those.
+        Note: Location desirability and number of rooms also have similar effect,
+        but the dataset did not those.
     """)
 
 with training_tab:
@@ -71,7 +78,8 @@ with training_tab:
         st.markdown("""
             The above correlation plot validates the following:
             - the predicted sale price is very strongly correlated to the actual sale price
-            - the predicted sale price typical increases with the increase in the house size, condition, and age
+            - the predicted sale price typical increases with the increase in the house size,
+            condition, and age
         """)
 
 with optimisation_tab:
@@ -89,7 +97,9 @@ with optimisation_tab:
         optimisation_parameters = get_optimisation_parameters()
 
         best_value = np.max(optimisation_parameters["rmse"])
-        best_value_parameters = optimisation_parameters[optimisation_parameters["rmse"] == best_value]
+        best_value_parameters = optimisation_parameters[
+            optimisation_parameters["rmse"] == best_value
+        ]
 
         st.dataframe(optimisation_parameters.style.format({
                 "learning_rate": "{:.2f}",
@@ -103,4 +113,5 @@ with optimisation_tab:
             ),
             hide_index=True
         )
-        st.write("- The marked parameters provide the best value and, thus, chosen for model training. ")
+        st.write("""- The marked parameters provide the best value and, thus,
+                 chosen for model training.""")

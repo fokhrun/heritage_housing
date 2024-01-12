@@ -1,7 +1,12 @@
+"""Housing Price Prediction page of the Multi-Page App."""
+
+# pylint: disable=C0103,E0401,C0103
 
 import pandas as pd
 import streamlit as st
-from utils.st_data_utils import get_correlated_info, get_prediction_data, get_prediction_feature_info
+from utils.st_data_utils import (
+    get_correlated_info, get_prediction_data, get_prediction_feature_info
+)
 from utils.st_parameters import target_column, page_icon
 
 page_title = "Housing Price Prediction"
@@ -51,23 +56,38 @@ for var in correlated.columns:
 
 
 def index_formatter(idx):
+    """Format the index.
+
+    Parameters
+    ----------
+    idx : int
+
+    Returns
+    -------
+    str
+    """
     return f"House {idx + 1}"
 
 
 next_index = index_formatter(prediction_results_sorted.index[-1] + 1)
-prediction_results_sorted.index = [index_formatter(idx) for idx in prediction_results_sorted.index]
+prediction_results_sorted.index = [
+    index_formatter(idx) for idx in prediction_results_sorted.index
+]
 
 for var in correlated.columns:
     if var == target_column:
         st.write("Here are the predicted prices:")
-        prediction_results_sorted[var] = prediction_results_sorted[var].apply(lambda _: f"${_:,.0f}")
+        prediction_results_sorted[var] = prediction_results_sorted[var].apply(
+            lambda _: f"${_:,.0f}"
+        )
     try:
         prediction_results_sorted[var] = prediction_results_sorted[var].apply(int)
     except ValueError:
         prediction_results_sorted[var] = prediction_results_sorted[var].apply(str)
 
 if st.button("Predict"):
-    prediction = get_prediction_feature_info(prediction_choices=choices, feature_info=correlated)
+    prediction = get_prediction_feature_info(prediction_choices=choices,
+                                             feature_info=correlated)
     choices[target_column] = prediction.loc[0, target_column]
     prediction_results_sorted.loc[next_index, :] = choices
 
